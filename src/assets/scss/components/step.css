@@ -1,0 +1,312 @@
+/* Element Chalk Variables */
+/* Transition
+-------------------------- */
+/* Color
+-------------------------- */
+/* 53a8ff */
+/* 66b1ff */
+/* 79bbff */
+/* 8cc5ff */
+/* a0cfff */
+/* b3d8ff */
+/* c6e2ff */
+/* d9ecff */
+/* ecf5ff */
+/* Link
+-------------------------- */
+/* Border
+-------------------------- */
+/* Fill
+-------------------------- */
+/* Typography
+-------------------------- */
+/* Size
+-------------------------- */
+/* z-index
+-------------------------- */
+/* Disable base
+-------------------------- */
+/* Icon
+-------------------------- */
+/* Checkbox
+-------------------------- */
+/* Radio
+-------------------------- */
+/* Select
+-------------------------- */
+/* Alert
+-------------------------- */
+/* MessageBox
+-------------------------- */
+/* Message
+-------------------------- */
+/* Notification
+-------------------------- */
+/* Input
+-------------------------- */
+/* Cascader
+-------------------------- */
+/* Group
+-------------------------- */
+/* Tab
+-------------------------- */
+/* Button
+-------------------------- */
+/* cascader
+-------------------------- */
+/* Switch
+-------------------------- */
+/* Dialog
+-------------------------- */
+/* Table
+-------------------------- */
+/* Pagination
+-------------------------- */
+/* Popup
+-------------------------- */
+/* Popover
+-------------------------- */
+/* Tooltip
+-------------------------- */
+/* Tag
+-------------------------- */
+/* Tree
+-------------------------- */
+/* Dropdown
+-------------------------- */
+/* Badge
+-------------------------- */
+/* Card
+--------------------------*/
+/* Slider
+--------------------------*/
+/* Steps
+--------------------------*/
+/* Menu
+--------------------------*/
+/* Rate
+--------------------------*/
+/* DatePicker
+--------------------------*/
+/* Loading
+--------------------------*/
+/* Scrollbar
+--------------------------*/
+/* Carousel
+--------------------------*/
+/* Collapse
+--------------------------*/
+/* Transfer
+--------------------------*/
+/* Header
+  --------------------------*/
+/* Footer
+--------------------------*/
+/* Main
+--------------------------*/
+/* Timeline
+--------------------------*/
+/* Backtop
+--------------------------*/
+/* Link
+--------------------------*/
+/* Calendar
+--------------------------*/
+/* Form
+-------------------------- */
+/* Avatar
+--------------------------*/
+/* Break-point
+--------------------------*/
+.lw-step {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.lw-step.lw-step--xbox {
+  padding: 0 60px;
+  position: relative;
+  width: 100%;
+  height: 80px;
+}
+
+.lw-step.lw-step--ybox {
+  padding: 20px 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lw-step .lw-step--x {
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+
+.lw-step .lw-step--x .lw-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item {
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  line-height: 46px;
+  background-color: #cdcdcd;
+  color: #fff;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item .item-title {
+  color: #909399;
+  position: absolute;
+  width: 400%;
+  top: 55.2px;
+  left: -150%;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item.is-active {
+  background-color: #E6A23C;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item.is-active .item-title {
+  color: #E6A23C;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item.is-pass {
+  background-color: #409EFF;
+}
+
+.lw-step .lw-step--x .lw-content .lw-step--item.is-pass .item-title {
+  color: #409EFF;
+}
+
+.lw-step .lw-step--x .lw-line {
+  width: 100%;
+  padding: 0 23px;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.lw-step .lw-step--x .lw-line .linebox {
+  height: 100%;
+  padding: 0 46px;
+}
+
+.lw-step .lw-step--x .lw-line .linebox .line {
+  width: 100%;
+  height: 41.6px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.lw-step .lw-step--x .lw-line .linebox .line.is-active {
+  border-bottom-color: #409EFF;
+}
+
+.lw-step .lw-step--x .lw-line .linebox .line.is-dotted {
+  border-bottom-style: dotted;
+  border-bottom-width: 4px;
+}
+
+.lw-step .lw-step--y {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.lw-step .lw-step--y .lw-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item {
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  line-height: 46px;
+  background-color: #cdcdcd;
+  color: #fff;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item .item-title {
+  color: #909399;
+  position: absolute;
+  width: 400%;
+  top: 0;
+  left: 23px;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item.is-active {
+  background-color: #E6A23C;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item.is-active .item-title {
+  color: #E6A23C;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item.is-pass {
+  background-color: #409EFF;
+}
+
+.lw-step .lw-step--y .lw-content .lw-step--item.is-pass .item-title {
+  color: #409EFF;
+}
+
+.lw-step .lw-step--y .lw-line {
+  width: 50%;
+  padding: 23px 0;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lw-step .lw-step--y .lw-line .linebox {
+  height: 100%;
+  padding: 24px 0;
+}
+
+.lw-step .lw-step--y .lw-line .linebox .line {
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #cdcdcd;
+}
+
+.lw-step .lw-step--y .lw-line .linebox .line.is-active {
+  border-right-color: #409EFF;
+}
+
+.lw-step .lw-step--y .lw-line .linebox .line.is-dotted {
+  border-right-style: dotted;
+  border-right-width: 4px;
+}
+/*# sourceMappingURL=step.css.map */

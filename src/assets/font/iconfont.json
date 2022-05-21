@@ -1,0 +1,51 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4354255",
+      "name": "形状-椭圆形",
+      "font_class": "xingzhuang-tuoyuanxing",
+      "unicode": "eb99",
+      "unicode_decimal": 60313
+    },
+    {
+      "icon_id": "4354256",
+      "name": "形状-三角形",
+      "font_class": "xingzhuang-sanjiaoxing",
+      "unicode": "eb9a",
+      "unicode_decimal": 60314
+    },
+    {
+      "icon_id": "7594407",
+      "name": "24gl-square",
+      "font_class": "24gl-square",
+      "unicode": "ea98",
+      "unicode_decimal": 60056
+    },
+    {
+      "icon_id": "7594409",
+      "name": "24gl-rectangle",
+      "font_class": "24gl-rectangle",
+      "unicode": "ea99",
+      "unicode_decimal": 60057
+    },
+    {
+      "icon_id": "11468160",
+      "name": "椭圆",
+      "font_class": "tuoyuan",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "22383119",
+      "name": "菱形",
+      "font_class": "lingxing",
+      "unicode": "edda",
+      "unicode_decimal": 60890
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+ @import '../common/var';
+
+ .lw-step{
+     $height:80px;
+     $itemWidth:46px;
+     width: 100%;
+     height: 100%;
+     position: relative;
+     @at-root &.lw-step--xbox{
+        padding: 0 60px;
+        position: relative;
+        width: 100%;
+        height: $height;
+    }
+    @at-root &.lw-step--ybox{
+        padding:20px 0 ;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        
+    }
+    .lw-step--x{
+        width: 100%;
+        height: $height;
+        position: relative;
+        .lw-content{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .lw-step--item{
+                width: $itemWidth;
+                height: $itemWidth;
+                text-align: center;
+                line-height: $itemWidth;
+                background-color: #cdcdcd;
+                color: #fff;
+                border-radius: 50%;
+                border: 1px solid #eee;
+                position: relative;
+                cursor: pointer;
+                transition: all 0.3s;
+                .item-title{
+                    color: $--color-text-secondary;
+                    position: absolute;
+                    width: 400%;
+                    top: $itemWidth*1.2;
+                    left: -150%;
+                }
+                @at-root &.is-active{
+                    background-color: $--color-warning;
+                    .item-title{
+                        color: $--color-warning;
+                       
+                    }
+                }
+                @at-root &.is-pass{
+                    background-color: $--color-primary;
+                    .item-title{
+                        color: $--color-primary;
+                    }
+                }
+
+            }
+        }
+        .lw-line{
+            width: 100%;
+            padding: 0 $itemWidth/2;
+            height: 100%;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            display: flex;
+            .linebox{
+                height: 100%;
+                padding:0 $itemWidth;
+                .line{
+                    width: 100%;
+                    height: $height*52/100;
+                    border-bottom: 1px solid #cdcdcd;
+                    @at-root &.is-active{
+                        border-bottom-color: $--color-primary;
+                        
+                    }
+                    @at-root &.is-dotted{
+                        border-bottom-style:dotted;
+                        border-bottom-width: 4px;
+                        
+                    }
+                }
+               
+            }
+        }
+    }
+    .lw-step--y{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .lw-content{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            .lw-step--item{
+                width: $itemWidth;
+                height: $itemWidth;
+                text-align: center;
+                line-height: $itemWidth;
+                background-color: #cdcdcd;
+                color: #fff;
+                border-radius: 50%;
+                border: 1px solid #eee;
+                position: relative;
+                cursor: pointer;
+                transition: all 0.3s;
+                .item-title{
+                    color: $--color-text-secondary;
+                    position: absolute;
+                    width: 400%;
+                    top: 0;
+                    left: $itemWidth/2;
+                }
+                @at-root &.is-active{
+                    background-color: $--color-warning;
+                    .item-title{
+                        color: $--color-warning;
+                       
+                    }
+                }
+                @at-root &.is-pass{
+                    background-color: $--color-primary;
+                    .item-title{
+                        color: $--color-primary;
+                    }
+                }
+
+            }
+        }
+        .lw-line{
+            width: 50%;
+            padding:$itemWidth/2 0 ;
+            height: 100%;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            .linebox{
+                height: 100%;
+                padding:24px 0 ;
+                .line{
+                    width: 100%;
+                    height: 100%;
+                    border-right: 1px solid #cdcdcd;
+                    @at-root &.is-active{
+                        border-right-color: $--color-primary;
+                        
+                    }
+                    @at-root &.is-dotted{
+                        border-right-style:dotted;
+                        border-right-width: 4px;
+                        
+                    }
+                }
+               
+            }
+        }
+    }
+
+ }
+
+
+
+
+
+
+
+
+ 
