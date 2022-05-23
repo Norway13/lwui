@@ -5,6 +5,8 @@
       <el-button @click="toCom('form')">表单</el-button>
       <el-button @click="toCom('echart')">图表</el-button>
       <el-button @click="toCom('flow')">流程图</el-button>
+      <el-button @click="toCom('gsix_blood')">血缘分析</el-button>
+      <el-button @click="toCom('treeImage')">影像查看</el-button>
     </div>
     <div class="content_box">
       <router-view />
@@ -45,7 +47,7 @@ export default {
     left: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   }
-  .content_box{
+  .content_box {
     width: 100%;
     height: 100%;
   }

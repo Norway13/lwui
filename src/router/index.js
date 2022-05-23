@@ -5,6 +5,8 @@ import Comp from '@/views/comp'
 import Form from '@/views/comp/form'
 import Echart from '@/views/comp/echart'
 import Flow from '@/views/comp/flow'
+import Blood from '@/views/gsix/blood'
+import TreeImageDemo from '@/views/comp/treeImage'
 
 Vue.use(Router)
 
@@ -30,7 +32,16 @@ export default new Router({
             {
               path: '/home/flow', 
               component: Flow,
-            }
+            },
+            {
+              path: '/home/gsix_blood', 
+              component: Blood,
+            },
+            {
+              path: '/home/treeImage', 
+              component: TreeImageDemo,
+            },
+
           ]
         }
       ]
