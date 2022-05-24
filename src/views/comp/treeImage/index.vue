@@ -7,6 +7,7 @@
 
 <script>
 import TreeImage from "@/components/TreeImage";
+// import pdfUrl from './test2.pdf'
 
 export default {
   name: "TreeImageDemo",
@@ -46,7 +47,7 @@ export default {
                   label: 'pdf文件显示',
                   id: '3',
                   type: 'pdf',
-                  // src: 'http://localhost:9527/bjui.pdf'
+                  // src: 'http://localhost:3222/test2.pdf'
                   src: "https://daishengloda.github.io/review/dist/static/pdf/p1.pdf",
                 }
               ]

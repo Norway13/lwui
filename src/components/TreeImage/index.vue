@@ -1,6 +1,7 @@
 <!-- 
 树图片pdf查看组件
-  pdf查看插件 vue-pdf      https://github.com/FranckFreiburger/vue-pdf#readme
+  pdf查看插件 vue-pdf      https://github.com/FranckFreiburger/vue-pdf#readme\
+  解决PDF打印 中文乱码问题   https://github.com/FranckFreiburger/vue-pdf/pull/130/files
   图片查看插件 viewerjs 
 -->
 <template>
@@ -45,44 +46,64 @@
           :src="imageSrc"
           style="display: none"
         />
-        <div v-if="type === 'pdf'" class="pdf" style="width: 100%; height: 100%">
-          <!-- <iframe
-            :src="'http://localhost:9527/pdf/web/viewer.html?file=' + imageSrc"
-            class="pdfFile"
-            name="pdfFile"
-            frameborder="0"
-            width="100%"
-            height="100%"
-          /> -->
-          <div class="show">
-            <pdf
-              :src="imageSrc"
-              ref="pdf"
-              :page="pdf.pageNum"
-              :rotate="pdf.pageRotate"
-              @progress="pdf.loadedRatio = $event"
-              @page-loaded="pageLoaded($event)"
-              @num-pages="pdf.pageTotalNum = $event"
-              @error="pdfError($event)"
-              @link-clicked="pdf.page = $event"
-            ></pdf>
-          </div>
-          <div class="pdf_footer">
-            <div class="info">
-              <div>当前页数/总页数：{{ pdf.pageNum }}/{{ pdf.pageTotalNum }}</div>
-              <div>进度：{{ pdf.loadedRatio }}</div>
-              <div>页面加载成功: {{ pdf.curPageNum }}</div>
+        <div
+          v-if="type === 'pdf'"
+          class="pdf"
+          style="width: 100%; height: 100%"
+        >
+          <div class="button_line">
+            <div class="left">
+              <i class="el-icon-notebook-2" @click.stop="showAllPage"></i>
+              <i class="el-icon-caret-left" @click.stop="prePage"></i>
+              <i class="el-icon-caret-right" @click.stop="nextPage"></i>
+              <div>{{ pdf.pageNum }}/{{ pdf.pageTotalNum }}</div>
+              <!-- <div>进度：{{ pdf.loadedRatio }}</div>
+              <div>页面加载成功: {{ pdf.curPageNum }}</div> -->
             </div>
-            <div class="operate">
-              <div class="btn" @click.stop="clock">顺时针</div>
-              <div class="btn" @click.stop="counterClock">逆时针</div>
-              <div class="btn" @click.stop="prePage">上一页</div>
-              <div class="btn" @click.stop="nextPage">下一页</div>
-              <div class="btn" @click="scaleD">放大</div>
-              <div class="btn" @click="scaleX">缩小</div>
-              <div class="btn" @click="fileDownload(pdfUrl, 'pdf文件')">
-                下载
-              </div>
+            <div class="center">
+              <i class="el-icon-zoom-in" @click.stop="scaleD"></i>
+              <i class="el-icon-zoom-out" @click.stop="scaleX"></i>
+            </div>
+            <div class="right">
+              <i class="el-icon-refresh-right" @click.stop="clock"></i>
+              <i class="el-icon-refresh-left" @click.stop="counterClock"></i>
+              <i
+                class="el-icon-printer"
+                @click="pdfPrint"
+              ></i>
+              <i
+                class="el-icon-download"
+                @click="fileDownload(imageSrc, 'pdf文件')"
+              ></i>
+            </div>
+          </div>
+          <div class="all_page" v-show="showAllPageF">
+            <div
+              v-for="i in pdf.pageTotalNum"
+              :key="i"
+              class="page"
+              @click="changePage(i)"
+              :class="pdf.pageNum === i ? 'selected' : ''"
+            >
+              <pdf :src="imageSrc" :page="i"></pdf>
+            </div>
+          </div>
+          <div
+            class="detail_page"
+            :style="{ left: showAllPageF ? '200px' : 0 }"
+          >
+            <div class="show">
+              <pdf
+                :src="imageSrc"
+                ref="pdf"
+                :page="pdf.pageNum"
+                :rotate="pdf.pageRotate"
+                @progress="pdf.loadedRatio = $event"
+                @page-loaded="pageLoaded($event)"
+                @num-pages="pdf.pageTotalNum = $event"
+                @error="pdfError($event)"
+                @link-clicked="pdf.page = $event"
+              ></pdf>
             </div>
           </div>
         </div>
@@ -130,6 +151,7 @@ export default {
         label: "label",
       },
       viewer: null,
+      showAllPageF: false,
       pdf: {
         // 总页数
         pageTotalNum: 1,
@@ -140,7 +162,7 @@ export default {
         // 页面加载完成
         curPageNum: 0,
         // 放大系数 默认百分百
-        scale: 60,
+        scale: 100,
         // 旋转角度 ‘90’的倍数才有效
         pageRotate: 0,
         // 单击内部链接时触发 (目前我没有遇到使用场景)
@@ -148,7 +170,18 @@ export default {
       },
     };
   },
-  watch: {},
+  watch: {
+    type: {
+      handler(val) {
+        console.log(val);
+        if (val === "pdf") {
+          this.$nextTick(() => {
+            this.$refs.pdf.$el.style.width = parseInt(this.pdf.scale) + "%";
+          });
+        }
+      },
+    },
+  },
   mounted() {
     if (this.activeitem !== "") {
       this.$refs.tree.setCurrentKey(this.activeitem);
@@ -214,6 +247,15 @@ export default {
       //   this.viewer.destroy()
       // }
     },
+    // 显示所有的pdf页数
+    showAllPage() {
+      this.showAllPageF = !this.showAllPageF;
+    },
+    // 跳页
+    changePage(i) {
+      console.log(i);
+      this.pdf.pageNum = i;
+    },
     //下载PDF
     fileDownload(data, fileName) {
       let blob = new Blob([data], {
@@ -249,7 +291,8 @@ export default {
     //缩小
     scaleX() {
       // scale 是百分百展示 不建议缩放
-      if (this.pdf.scale == 100) {
+      if (this.pdf.scale <= 60) {
+        this.pdf.scale = 60;
         return;
       }
       this.pdf.scale += -5;
@@ -294,7 +337,7 @@ export default {
     pdfPrint() {
       // 第一个参数 文档打印的分辨率
       // 第二个参数 文档打印的页数
-      this.$refs.pdf.print(100, [1, 2]);
+      this.$refs.pdf.print(100, [1]);
     },
     // 获取当前页面pdf的文字信息内容
     logContent() {
@@ -366,44 +409,61 @@ export default {
 }
 .pdf {
   padding: 20px;
-  .show {
-    overflow: auto;
-    margin: auto;
-    max-width: 75%;
-    height: 80vh;
-    // max-height: 530px;
-  }
-  .pdf_footer {
-    position: sticky;
-    bottom: 0;
+  position: relative;
+  .button_line {
+    height: 32px;
+    width: 100%;
+    position: absolute;
+    top: 0;
     left: 0;
-    right: 0;
-    padding: 10px 0;
-    background-color: rgba(255, 255, 255, 0.5);
-    .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    background-color: rgb(237, 237, 240);
+    i {
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .left {
       display: flex;
-      flex-wrap: wrap;
-      div {
-        width: 30%;
+      align-items: center;
+    }
+  }
+  .all_page {
+    position: absolute;
+    width: 200px;
+    top: 32px;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    .page {
+      width: 70%;
+      margin-left: 15%;
+      margin-top: 10px;
+      &.selected {
+        border: 2px solid skyblue;
       }
     }
-    .operate {
-      margin: 10px 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      div {
-        // width: 80px;
-        text-align: center;
-        font-size: 15px;
-      }
-      .btn {
-        cursor: pointer;
-        margin: 5px 10px;
-        width: 12%;
-        border-radius: 10px;
-        padding: 5px;
-        color: #fff;
-        background-color: #3dcbbc;
+  }
+
+  .detail_page {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    bottom: 0;
+    background: rgba(237, 237, 240, 1);
+
+    .show {
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+      // justify-content: center;
+
+      & > span {
+        margin: auto;
       }
     }
   }
